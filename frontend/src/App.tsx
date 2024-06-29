@@ -24,13 +24,13 @@ function App() {
             key={route.path} 
             path={route.path} 
             element={
-              route.layout !== "auth" ? (
+              route.layout === "auth" ? (
+                <AuthLayout display={route.element}/>
+              ) : (
                 // this need to throw away user from app if he is not authorized
                 <PrivateRoute>
-                  <AuthLayout display={route.element}/>
+                  <AppLayout display={route.element}/>
                 </PrivateRoute>
-              ) : (
-                <AppLayout display={route.element}/>
               )
             } 
           />

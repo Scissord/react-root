@@ -1,18 +1,19 @@
-import { Navigate } from "react-router-dom"
+import { ReactNode } from "react";
+import { Navigate } from "react-router-dom";
 
-// custom route object checks for an auth token before
-// rendering the route – redirects if token is not present
-export function PrivateRoute(){
+type PrivateRouteTypes = {
+  children: ReactNode
+}
 
-  // check user exists
+export const PrivateRoute = (props: PrivateRouteTypes) => {
+  const { children } = props;
+
   const user = JSON.parse(localStorage.getItem("user") ?? '{}');
 
   if (user?.token){
     // if (permissions[user.permission][props.permission]){
-
     //   // user is good
-    //   return props.children;
-
+      return children;
     // }
   }
 

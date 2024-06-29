@@ -4,6 +4,7 @@
 		"свечение",
 		"Instatus",
 		"Scissxrd",
-		"tailwindcss"
+		"tailwindcss",
+		"@tailwind"
 	]
 }

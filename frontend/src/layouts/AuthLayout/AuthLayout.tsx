@@ -10,9 +10,7 @@ export const AuthLayout: FC<AuthLayoutProps> = ({ display: DisplayComponent }) =
 
 	return (
 		<div className={styles.container}>
-			<div className={styles.page}>
-				<DisplayComponent/>
-			</div>
+			<DisplayComponent/>
 		</div>
 	)
 }
