@@ -1,19 +1,19 @@
 import Axios from 'axios';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AuthLayout, AppLayout, ErrorLayout } from "@layout";
-import { PrivateRoute } from '@components';
+import { AuthRoute, PrivateRoute } from '@components';
 import { NotFound } from '@pages/NotFound';
 import { EnvironmentSettings } from '@types';
 import Settings from '@utils/settings.json';
 import routes from '@routes';
 
 function App() {
-  const user = JSON.parse(localStorage.getItem("user") ?? '{}');
-  Axios.defaults.baseURL = Settings[process.env.NODE_ENV as keyof EnvironmentSettings].server_url
+  // const user = JSON.parse(localStorage.getItem("user") ?? '{}');
+  // Axios.defaults.baseURL = Settings[process.env.NODE_ENV as keyof EnvironmentSettings].server_url
 
-  if (user?.token) {
-    Axios.defaults.headers.common["Authorization"] = "Bearer " + user.token
-  }
+  // if (user?.token) {
+  //   Axios.defaults.headers.common["Authorization"] = "Bearer " + user.token
+  // }
 
   return (
     // here is providers
@@ -25,7 +25,9 @@ function App() {
             path={route.path} 
             element={
               route.layout === "auth" ? (
-                <AuthLayout display={route.element}/>
+                <AuthRoute>
+                  <AuthLayout display={route.element}/>
+                </AuthRoute>
               ) : (
                 // this need to throw away user from app if he is not authorized
                 <PrivateRoute>

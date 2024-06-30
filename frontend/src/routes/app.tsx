@@ -1,10 +1,11 @@
 import { lazy } from 'react';
 import { CW } from '@components';
+import { IRoute } from '@interfaces';
 
 const HomePage = lazy(() => import('@pages/Home'))
 const LibraryPage = lazy(() => import('@pages/Library'))
 
-const AppRoutes = [
+const AppRoutes: IRoute[] = [
   { 
 		path: "/", 
 		element: CW(HomePage),

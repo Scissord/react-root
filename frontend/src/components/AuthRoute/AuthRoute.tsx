@@ -1,11 +1,11 @@
 import { ReactNode } from "react";
 import { Navigate } from "react-router-dom";
 
-type PrivateRouteTypes = {
+type AuthRouteTypes = {
   children: ReactNode
 }
 
-export const PrivateRoute = (props: PrivateRouteTypes) => {
+export const AuthRoute = (props: AuthRouteTypes) => {
   const { children } = props;
 
   const user = JSON.parse(localStorage.getItem("user") ?? '{}');
@@ -13,10 +13,10 @@ export const PrivateRoute = (props: PrivateRouteTypes) => {
   if (user?.token){
     // if (permissions[user.permission][props.permission]){
     //   // user is good
-      return children;
+    return <Navigate to='/' />;
     // }
   }
 
   // user is not authenticated
-  return <Navigate to='/login' />;
+  return children;
 }

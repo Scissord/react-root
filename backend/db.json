@@ -1,0 +1,20 @@
+{
+  "goods": [
+    {
+      "id": "1a2c",
+      "name": "qweqwewq"
+    }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "name": "John",
+      "password": "12345678"
+    },
+    {
+      "id": "2",
+      "name": "Lisa",
+      "password": "12345678"
+    }
+  ]
+}

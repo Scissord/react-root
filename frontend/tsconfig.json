@@ -39,6 +39,7 @@
       "@routes": ["routes/routes"],
       "@layout": ["layouts/lib"],
       "@types": ["types/lib"],
+      "@store/*": ["store/*"],
     }
   },
   "include": [
