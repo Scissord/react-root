@@ -1,42 +1,41 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
+import { ColorModeButton } from '@components';
+import { useAppSelector } from '@hooks';
+import { selectTheme } from '@store/reducers/themeSlice';
+import { IconArrowRightSquare, IconArrowLeftSquare } from '@icons';
 
-type LayoutProps = {
-	display: FC
-}
+type AppLayoutProps = {
+  display: FC;
+};
 
-export const AppLayout: FC<LayoutProps> = ({ display: DisplayComponent }) => {
-	if (!DisplayComponent) return false;
+export const AppLayout: FC<AppLayoutProps> = ({ display: DisplayComponent }) => {
+  const theme = useAppSelector(selectTheme);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-	return (
-		<div className="drawer">
-			<input id="my-drawer" type="checkbox" className="drawer-toggle" />
-			<div className="drawer-content">
-				<DisplayComponent />
-			</div>
-			<div className="drawer-side">
-				<label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
-				<ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
-					{/* Sidebar content here */}
-					<li><a>Sidebar Item 1</a></li>
-					<li><a>Sidebar Item 2</a></li>
-				</ul>
-			</div>
-		</div>
-	)
-}
+  if (!DisplayComponent) return false;
 
-			// {/* <div className="drawer">
-			// 	<input id="my-drawer" type="checkbox" className="drawer-toggle" />
-			// 	<div className="drawer-content">
-			// 		{/* Page content here */}
-			// 		<label htmlFor="my-drawer" className="btn btn-primary drawer-button">Open drawer</label>
-			// 	</div>
-			// 	<div className="drawer-side">
-			// 		<label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
-			// 		<ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
-			// 			{/* Sidebar content here */}
-			// 			<li><a>Sidebar Item 1</a></li>
-			// 			<li><a>Sidebar Item 2</a></li>
-			// 		</ul>
-			// 	</div>
-			// </div> */}
+  return (
+    <div className={theme === 'dark' ? 'dark' : ''}>
+      <div className="min-h-[100vh] bg-neutral-200 dark:bg-indigo-950 flex items-center justify-center relative">
+        <div
+          className={`h-[100vh] bg-indigo-950 dark:bg-neutral-200 flex flex-col items-center py-4 rounded-tr-sm rounded-br-sm transition-width duration-300 ${
+            isSidebarOpen ? 'min-w-[10%] w-[10%]' : 'min-w-[3%] w-[3%]'
+          }`}
+        >
+          {!isSidebarOpen ? (
+            <IconArrowRightSquare onClick={() => setIsSidebarOpen(!isSidebarOpen)} />
+          ) : (
+            <div className="ml-auto mr-3">
+              <IconArrowLeftSquare onClick={() => setIsSidebarOpen(!isSidebarOpen)} />
+            </div>
+          )}
+        </div>
+
+        <DisplayComponent />
+        <div className="absolute right-5 bottom-5">
+          <ColorModeButton theme={theme} />
+        </div>
+      </div>
+    </div>
+  );
+};

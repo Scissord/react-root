@@ -46,7 +46,7 @@ const SignIn: FC = () => {
       </section>
       <section className={css.right_section}>
         <img src="logo/logo_white.svg" alt="logo" className="w-16 sm:w-20"/>
-        <p className="text-3xl font-bold">Hello Again!</p>
+        <p className="text-3xl font-bold text-black dark:text-white">Hello Again!</p>
         <p className="text-lg text-gray-400 break-words text-center">Please enter you're username and password to continue.</p>
         <div className="flex flex-col items-center justify-center gap-6 w-[70%]">
           <label className="input input-bordered flex items-center gap-2 w-full">

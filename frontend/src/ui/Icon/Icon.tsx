@@ -1,39 +1,33 @@
-import { FC, ReactNode } from 'react';
-import styles from './Icon.module.scss';
+/***
+ *
+ *  ICON
+ *  Render an icon from feather icons
+ *
+ *  PROPS
+ *  icon: "loader", trash
+ *  size: icon pack to use, default is feathericons
+ *  className: image to use (see: https://feathericons.com)
+ *  color: inject a parent class object
+ *
+ **********/
 
-// icon - react-icons
-// color - black, white, #5F58CC
-// className	{styles.a}	
-// size	1em	
-// mr margin-right
+// icon={'loader'}
+// size={18}
+// className={'animate-spin'}
+// color="gray"
 
-type IconProps = {
-	icon: ReactNode,
-	size?: number | string,
-	mt?: number | string,
-	mb?: number | string,
-	mr?: number | string,
-	ml?: number | string,
-	onClick?: () => void,
-}
+import FeatherIcon from "feather-icons-react"
+import { IIcon } from "@interfaces"
+import { FC } from "react"
 
-export const Icon: FC<IconProps> = (props) => {
-	const { icon, size, mt, mb, mr, ml, onClick } = props;
-
-	return (
-		<div 
-			className={styles.container} 
-			style={{ 
-				fontSize: size ?? '1em',
-				marginTop: mt,
-				marginBottom: mb,
-				marginRight: mr,
-				marginLeft: ml,
-				userSelect: 'none',
-			}}
-			onClick={onClick}
-		>
-			{icon}
-		</div>
-	)
+export const Icon: FC<IIcon> = (props) => {
+  return (
+    <FeatherIcon
+      icon={props.icon}
+      size={props.size || 16}
+      className={props.className}
+      fill={props.color}
+      strokeWidth={props.strokeWidth}
+    />
+  )
 }

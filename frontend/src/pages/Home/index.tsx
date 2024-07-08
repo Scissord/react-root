@@ -2,7 +2,6 @@ import { FC, useState } from 'react';
 import { useGetGoodsQuery, useAddProductMutation, useDeleteProductMutation } from '@store/api/goodsApi';
 import { useAppSelector, useAppDispatch } from '@hooks';
 import { decrement, increment, incrementByAmount } from '@store/reducers/counterSlice';
-import { IconArrowRightSquare } from '@icons';
 
 interface IGood {
   id: string;
@@ -11,7 +10,7 @@ interface IGood {
 
 const Home: FC = () => {
   const count = useAppSelector((state) => state.counter.value);
-  
+
   const dispatch = useAppDispatch();
 
   const [limit, setLimit] = useState("");
@@ -35,14 +34,9 @@ const Home: FC = () => {
     await deleteProduct(id).unwrap();
   };
 
-  if(isLoading) return <p>Loading...</p> 
+  if(isLoading) return <p>Loading...</p>
   return (
-    <div className="flex w-full min-h-[100vh] overflow-y-auto p-10">
-      <div className="w-[5%]">
-        <label htmlFor="my-drawer" className="cursor-pointer">
-          <IconArrowRightSquare htmlFor="my-drawer"/>
-        </label>
-      </div>
+    <div className="flex w-full min-h-[100vh] overflow-y-auto p-4">
       <div>
         <select value={limit} onChange={(e) => setLimit(e.target.value)}>
           <option value="">All</option>

@@ -1,4 +1,5 @@
 export { IconArrowRightSquare } from './IconArrowRightSquare';
+export { IconArrowLeftSquare } from './IconArrowLeftSquare';
 export { IconPlus } from './IconPlus';
 export { IconGear } from './IconGear';
 export { IconDelete } from './IconDelete';

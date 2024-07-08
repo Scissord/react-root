@@ -9,7 +9,7 @@
   padding: 0px;
   margin: 0px;
   font-family: "Spline Sans Mono", monospace;
-  @apply: transition-colors duration-200;
+  @apply: transition-colors duration-300 ease-in-out;
 }
 
 *,
