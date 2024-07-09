@@ -2,6 +2,7 @@ import { FC, useState } from 'react';
 import { useGetGoodsQuery, useAddProductMutation, useDeleteProductMutation } from '@store/api/goodsApi';
 import { useAppSelector, useAppDispatch } from '@hooks';
 import { decrement, increment, incrementByAmount } from '@store/reducers/counterSlice';
+import { Loader } from '@ui';
 
 interface IGood {
   id: string;
@@ -15,7 +16,6 @@ const Home: FC = () => {
 
   const [limit, setLimit] = useState("");
   const [newProduct, setNewProduct] = useState("");
-
   const { data = [], isLoading } = useGetGoodsQuery(limit);
   // , { isError }
   const [addProduct] = useAddProductMutation();
@@ -34,7 +34,8 @@ const Home: FC = () => {
     await deleteProduct(id).unwrap();
   };
 
-  if(isLoading) return <p>Loading...</p>
+  if(isLoading) return <Loader/>
+
   return (
     <div className="flex w-full min-h-[100vh] overflow-y-auto p-4">
       <div>
