@@ -33,11 +33,12 @@
     "editor.defaultFormatter": "vscode.html-language-features"
   },
   "cSpell.words": [
-		"@tailwind",
-		"свечение",
-		"Instatus",
-		"Scissxrd",
-		"tailwindcss",
-		"@tailwind"
-	]
+    "@tailwind",
+    "Instatus",
+    "Scissxrd",
+    "tailwindcss",
+    "Артикулы",
+    "Номенклатура",
+    "свечение"
+  ]
 }
