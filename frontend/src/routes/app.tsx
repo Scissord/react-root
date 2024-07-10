@@ -5,7 +5,7 @@ import { IRoute } from '@interfaces';
 const HomePage = lazy(() => import('@pages/Home'));
 const ArticlesPage = lazy(() => import('@pages/Articles'));
 const ProductsPage = lazy(() => import('@pages/Products'));
-const LibraryPage = lazy(() => import('@pages/Library'));
+const StoragePage = lazy(() => import('@pages/Storage'));
 
 const AppRoutes: IRoute[] = [
   {
@@ -25,6 +25,12 @@ const AppRoutes: IRoute[] = [
 		element: CW(ProductsPage),
 		layout: "app",
 		title: "Products",
+	},
+  {
+		path: "/storage",
+		element: CW(StoragePage),
+		layout: "app",
+		title: "Storage",
 	},
   // {
 	// 	path: "/library",

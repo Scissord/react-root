@@ -16,12 +16,21 @@ export const AppLayout: FC<AppLayoutProps> = ({ display: DisplayComponent }) => 
   if (!DisplayComponent) return false;
 
   return (
-    <div className={theme === 'dark' ? 'dark' : ''}>
-      <div className="min-h-[100vh] bg-neutral-200 dark:bg-indigo-950 flex items-center justify-center relative">
+    <div className={`
+      min-h-[100vh]
+      ${theme === 'dark' ? 'dark' : ''}
+    `}>
+      <div className={`
+        bg-neutral-200 dark:bg-indigo-950
+        flex items-center justify-center relative
+      `}>
         <div
-          className={`mr-auto h-[100vh] bg-indigo-950 dark:bg-neutral-200 flex flex-col items-center py-4 rounded-tr-sm rounded-br-sm transition-width duration-300 ${
-            isSidebarOpen ? 'min-w-[12%] w-[12%]' : 'min-w-[5%] w-[5%]'
-          }`}
+          className={`
+            mr-auto min-h-[100vh] bg-indigo-950 dark:bg-neutral-200
+            hidden lg:flex flex-col items-center py-4 rounded-tr-sm
+            rounded-br-sm transition-width duration-300
+            ${isSidebarOpen ? 'w-[12%]' : 'w-[5%]'}
+          `}
         >
           {!isSidebarOpen ? (
             <ClosedSidebar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen}/>
@@ -30,11 +39,11 @@ export const AppLayout: FC<AppLayoutProps> = ({ display: DisplayComponent }) => 
           )}
         </div>
 
-        <div className='w-full h-screen'>
+       <div className='w-full min-h-[100vh]'>
           <DisplayComponent />
         </div>
 
-        <div className="absolute right-5 bottom-5">
+        <div className="absolute right-3 bottom-3 z-10">
           <ColorModeButton theme={theme} />
         </div>
       </div>

@@ -1,20 +1,12 @@
 {
-  "goods": [
+  "products": [
     {
-      "id": "e249",
-      "name": "sadasdas"
+      "id": "8e67",
+      "name": "sdasdas"
     },
     {
-      "id": "b637",
-      "name": "asdasdasd"
-    },
-    {
-      "id": "5f83",
-      "name": "asdasdasd"
-    },
-    {
-      "id": "72f6",
-      "name": "dsfsdf"
+      "id": "e9e3",
+      "name": "qwewqe"
     }
   ],
   "users": [

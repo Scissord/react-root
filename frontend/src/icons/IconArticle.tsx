@@ -1,5 +1,3 @@
-
-
 import { useAppSelector } from '@hooks';
 import { selectTheme } from '@store/reducers/themeSlice';
 

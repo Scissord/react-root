@@ -1,12 +1,12 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-export const goodsApi = createApi({
-	reducerPath: 'goodsApi',
+export const productsApi = createApi({
+	reducerPath: 'productsApi',
 	baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:8080/' }),
 	tagTypes: ['Products'],
 	endpoints: (build) => ({
-		getGoods: build.query({
-			query: (limit = "") => `/goods?${limit && `_limit=${limit}`}`,
+		getProducts: build.query({
+			query: (limit = "") => `/products?${limit && `_limit=${limit}`}`,
 			providesTags: (result) => result
 				? [
 						...result.map(({ id } : { id: string }) => ({ type: 'Products', id })),
@@ -17,7 +17,7 @@ export const goodsApi = createApi({
 		addProduct: build.mutation({
 			query: (body) => ({
 				method: 'POST',
-				url: '/goods',
+				url: '/products',
 				body
 			}),
 			invalidatesTags: [{ type: 'Products', id: 'LIST' }]
@@ -25,11 +25,11 @@ export const goodsApi = createApi({
 		deleteProduct: build.mutation({
 			query: (id) => ({
 				method: 'DELETE',
-				url: `/goods/${id}`,
+				url: `/products/${id}`,
 			}),
 			invalidatesTags: [{ type: 'Products', id: 'LIST' }]
 		}),
 	})
 });
 
-export const { useGetGoodsQuery, useAddProductMutation, useDeleteProductMutation } = goodsApi;
+export const { useGetProductsQuery, useAddProductMutation, useDeleteProductMutation } = productsApi;

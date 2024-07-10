@@ -1,5 +1,6 @@
-// for layout pages
-// export { routes } from './routes/routes';
+// sidebar
+export { sidebar_urls } from './sidebar/sidebar_urls';
 
-// for sidebar navigation 
-export { pages } from './pages/pages';
+//product
+export { mockProducts } from './product/products';
+export { productsHeaders } from './product/headers';

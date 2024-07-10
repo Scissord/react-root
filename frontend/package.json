@@ -19,6 +19,7 @@
     "concurrently": "^8.2.2",
     "easing-coordinates": "^2.0.2",
     "feather-icons-react": "^0.7.0",
+    "framer-motion": "^11.2.14",
     "json-server": "^1.0.0-beta.1",
     "leva": "^0.9.35",
     "react": "^18.2.0",

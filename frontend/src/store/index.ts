@@ -1,22 +1,23 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import themeReducer from './reducers/themeSlice';
 import counterReducer from './reducers/counterSlice';
-import { goodsApi } from './api/goodsApi';
 import { authApi } from './api/authApi';
+import { productsApi } from './api/productsApi';
 
 const rootReducer = combineReducers({
 	// redux
 	theme: themeReducer,
 	counter: counterReducer,
 	// rtk-query endpoints
-	[goodsApi.reducerPath]: goodsApi.reducer,
 	[authApi.reducerPath]: authApi.reducer,
+  [productsApi.reducerPath]: productsApi.reducer,
+  // additional middlewares can be added here, e.g., thunk or other middleware for async actions
 })
 
 export const store = configureStore({
 	reducer: rootReducer,
-	middleware: (getDefaultMiddleware) => 
-		getDefaultMiddleware().concat(authApi.middleware, goodsApi.middleware)
+	middleware: (getDefaultMiddleware) =>
+		getDefaultMiddleware().concat(authApi.middleware, productsApi.middleware)
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

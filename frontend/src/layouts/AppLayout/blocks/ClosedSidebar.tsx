@@ -1,24 +1,12 @@
 import { FC, Dispatch, SetStateAction } from "react";
 import { useNavigate } from "react-router-dom";
-import { IconArrowRightSquare, IconArticle, IconProduct } from "@icons";
+import { IconArrowRightSquare } from "@icons";
+import { sidebar_urls } from "@constants";
 
 type ClosedSidebarProps = {
   isSidebarOpen: boolean;
   setIsSidebarOpen: Dispatch<SetStateAction<boolean>>;
 };
-
-const urls = [
-  {
-    icon: <IconArticle/>,
-    label: 'Артикулы',
-    path: '/articles'
-  },
-  {
-    icon: <IconProduct/>,
-    label: 'Номенклатура',
-    path: '/products'
-  }
-]
 
 const ClosedSidebar: FC<ClosedSidebarProps> = (props) => {
   const { isSidebarOpen, setIsSidebarOpen } = props;
@@ -26,7 +14,7 @@ const ClosedSidebar: FC<ClosedSidebarProps> = (props) => {
   const navigate = useNavigate();
 
   return (
-    <div className="w-full h-[100vh] flex flex-col items-center">
+    <div className="w-full h-full flex flex-col items-center">
       <div
         onClick={() => setIsSidebarOpen(!isSidebarOpen)}
         className=" hover:bg-gray-100 hover:bg-opacity-20 hover:rounded-lg cursor-pointer p-2"
@@ -34,7 +22,7 @@ const ClosedSidebar: FC<ClosedSidebarProps> = (props) => {
         <IconArrowRightSquare  />
       </div>
       <div className="flex flex-col gap-3 pt-8">
-        {urls.map((url) => (
+        {sidebar_urls.map((url) => (
           <div
             onClick={() => navigate(url.path)}
             className="hover:rounded-lg p-2 hover:bg-gray-100 hover:bg-opacity-20 cursor-pointer"

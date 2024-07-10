@@ -1,5 +1,7 @@
 import { FC, useState } from 'react';
-import { useGetGoodsQuery, useAddProductMutation, useDeleteProductMutation } from '@store/api/goodsApi';
+import {
+  useGetProductsQuery, useAddProductMutation, useDeleteProductMutation
+} from '@store/api/productsApi';
 import { useAppSelector, useAppDispatch } from '@hooks';
 import { decrement, increment, incrementByAmount } from '@store/reducers/counterSlice';
 import { Loader } from '@ui';
@@ -16,7 +18,7 @@ const Home: FC = () => {
 
   const [limit, setLimit] = useState("");
   const [newProduct, setNewProduct] = useState("");
-  const { data = [], isLoading } = useGetGoodsQuery(limit);
+  const { data = [], isLoading } = useGetProductsQuery(limit);
   // , { isError }
   const [addProduct] = useAddProductMutation();
   const [deleteProduct] = useDeleteProductMutation();
