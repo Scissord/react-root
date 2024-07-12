@@ -40,6 +40,7 @@
       "@layout": ["layouts/lib"],
       "@types": ["types/lib"],
       "@store/*": ["store/*"],
+      "@context": ["context/lib"],
     }
   },
   "include": [

@@ -1,8 +1,9 @@
 import Axios from 'axios';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { AuthLayout, AppLayout, ErrorLayout } from "@layout";
+import { ErrorLayout } from "@layout";
 import { AuthRoute, PrivateRoute } from '@components';
 import { NotFound } from '@pages/NotFound';
+import { View } from '@context';
 import { EnvironmentSettings } from '@types';
 import Settings from '@utils/settings.json';
 import routes from '@routes';
@@ -16,25 +17,41 @@ function App() {
   // }
 
   return (
-    // here is providers
     <Router>
       <Routes>
         {routes.map((route) => (
-          <Route 
-            key={route.path} 
-            path={route.path} 
+          <Route
+            key={route.path}
+            path={route.path}
             element={
-              route.layout === "auth" ? (
-                <AuthRoute>
-                  <AuthLayout display={route.element}/>
-                </AuthRoute>
-              ) : (
-                // this need to throw away user from app if he is not authorized
+              route.layout === "app" ? (
                 <PrivateRoute>
-                  <AppLayout display={route.element}/>
+                  <View
+                    title={route.title}
+                    layout={route.layout}
+                    display={route.element}
+                  />
                 </PrivateRoute>
+              ) : route.layout === 'auth' && (
+                <AuthRoute>
+                  <View
+                    title={route.title}
+                    layout={route.layout}
+                    display={route.element}
+                  />
+                </AuthRoute>
               )
-            } 
+              // route.layout === "auth" ? (
+              //   <AuthRoute>
+              //     <AuthLayout display={route.element}/>
+              //   </AuthRoute>
+              // ) : (
+              //   // this need to throw away user from app if he is not authorized
+              //   <PrivateRoute>
+              //     <AppLayout display={route.element}/>
+              //   </PrivateRoute>
+              // )
+            }
           />
         ))}
 

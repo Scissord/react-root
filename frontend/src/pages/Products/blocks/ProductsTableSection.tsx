@@ -1,9 +1,34 @@
-import { FC } from 'react'
-import { productsHeaders, mockProducts } from '@constants';
+import { FC, useState } from 'react'
+import { useDeleteProductMutation } from '@store/api/productsApi';
+import { IProduct } from '@interfaces';
+import { productsHeaders } from '@constants';
+import { IconTrash } from '@icons';
 
-const ProductsTableSection: FC = () => {
+type ProductsTopSectionProps = {
+  data: IProduct[];
+  page: number;
+  setPage: (page: number | ((prevPage: number) => number)) => void;
+}
+
+const ProductsTableSection: FC<ProductsTopSectionProps> = (props) => {
+  const {
+    data, page, setPage
+  } = props;
+
+  const [iconsIndex, setIconsIndex] = useState<number | null>(null);
+
+  const [deleteProduct, { isError }] = useDeleteProductMutation();
+
+  const handleDeleteProduct = async (id: string | number) => {
+    const confirm = window.confirm("Are you sure you want to delete this product?");
+    //.unwrap(); is using to take correct data from second index of useDeleteProductMutation, like isError
+    if(confirm) {
+      await deleteProduct(id).unwrap();
+    }
+  };
+
   return (
-    <section className="h-[80vh] overflow-x-auto px-2">
+    <section className="h-[86vh] overflow-x-auto px-2">
       <table className="table table-xs table-pin-rows table-pin-cols">
         <thead>
           <tr>
@@ -20,13 +45,15 @@ const ProductsTableSection: FC = () => {
           </tr>
         </thead>
         <tbody>
-          {mockProducts.map((product, index) => (
+          {data.map((product, index) => (
             <tr
               key={product.id}
               className={`
                 bg-white
                 hover:bg-gray-200
               `}
+              onMouseEnter={() => setIconsIndex(index)}
+              onMouseLeave={() => setIconsIndex(null)}
             >
               <th
                 className={`
@@ -40,7 +67,19 @@ const ProductsTableSection: FC = () => {
               <td>{product.company}</td>
               <td>{product.location}</td>
               <td>{product.lastLogin}</td>
-              <td>{product.favoriteColor}</td>
+              <td className='flex items-center justify-between'>
+                {product.favoriteColor}
+                {iconsIndex === index && (
+                  <div className='flex items-center'>
+                    <div
+                      onClick={() => handleDeleteProduct(product.id)}
+                      className='cursor-pointer'
+                    >
+                      <IconTrash/>
+                    </div>
+                  </div>
+                )}
+              </td>
               <th
                 className={`
                   bg-indigo-950 text-white
@@ -53,19 +92,35 @@ const ProductsTableSection: FC = () => {
         </tbody>
         <tfoot>
           <tr>
-            {productsHeaders.map((product) => (
+            {productsHeaders.map((header) => (
               <th
-                key={product.id}
+                key={header.id}
                 className={`
                   bg-indigo-950 text-white
                 `}
               >
-                {product.label}
+                {header.label}
               </th>
             ))}
           </tr>
         </tfoot>
       </table>
+
+      <div className="join mt-6 ml-3">
+        <button
+          onClick={() => setPage(prev => Math.max(prev - 1, 1))}
+          className="join-item btn"
+        >
+          «
+        </button>
+        <button className="join-item btn">Page {page}</button>
+        <button
+          onClick={() => setPage((prev: number) => prev + 1)}
+          className="join-item btn"
+        >
+          »
+        </button>
+      </div>
     </section>
   )
 }

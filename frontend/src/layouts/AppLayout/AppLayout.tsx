@@ -6,10 +6,10 @@ import OpenSidebar from './blocks/OpenedSidebar';
 import ClosedSidebar from './blocks/ClosedSidebar';
 
 type AppLayoutProps = {
-  display: FC;
+  children: FC;
 };
 
-export const AppLayout: FC<AppLayoutProps> = ({ display: DisplayComponent }) => {
+export const AppLayout: FC<AppLayoutProps> = ({ children: DisplayComponent }) => {
   const theme = useAppSelector(selectTheme);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 

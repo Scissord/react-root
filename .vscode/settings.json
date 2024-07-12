@@ -40,5 +40,8 @@
     "Артикулы",
     "Номенклатура",
     "свечение"
-  ]
+  ],
+  "[typescript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  }
 }

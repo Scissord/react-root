@@ -8,3 +8,6 @@ export { IconStorage } from './IconStorage';
 //theme
 export { IconSun } from './IconSun';
 export { IconMoon } from './IconMoon';
+
+//overall
+export { IconTrash } from './IconTrash';

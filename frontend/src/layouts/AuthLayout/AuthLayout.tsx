@@ -4,10 +4,10 @@ import { useAppSelector } from '@hooks';
 import { selectTheme } from '@store/reducers/themeSlice';
 
 type AuthLayoutProps = {
-	display: FC
+	children: FC
 }
 
-export const AuthLayout: FC<AuthLayoutProps> = ({ display: DisplayComponent }) => {
+export const AuthLayout: FC<AuthLayoutProps> = ({ children: DisplayComponent }) => {
 	const theme = useAppSelector(selectTheme);
 
 	if (!DisplayComponent) return false;

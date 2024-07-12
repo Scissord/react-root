@@ -27,6 +27,7 @@ export default defineConfig({
       "@layout": path.resolve(__dirname, 'src/layouts/lib'),
       "@types": path.resolve(__dirname, 'src/types/lib'),
       "@store": path.resolve(__dirname, 'src/store'),
+      "@context": path.resolve(__dirname, 'src/context/lib'),
     },
   }
 });
